@@ -2,6 +2,9 @@ package taskdb
 
 import (
 	"database/sql"
+	"fmt"
+	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang/glog"
@@ -11,9 +14,27 @@ type TaskeeperDB struct {
 	db *sql.DB // mysql db connection
 }
 
+func mustGetenv(k string) string {
+	v := os.Getenv(k)
+	if v == "" {
+		log.Panicf("%s environment variable not set.", k)
+	}
+	return v
+}
+
 // ConnectDb function creates database connection and returns CaterDB struct
 func ConnectDb() (TaskeeperDB, error) {
-	db, err := sql.Open("mysql", "root:MyLocalDbForFun@tcp(127.0.0.1:3306)/taskeeper")
+	// get env variables from the environment variables
+	var (
+		connectionName = mustGetenv("CLOUDSQL_CONNECTION_NAME")
+		userName       = mustGetenv("SQL_USERNAME")
+		cloudSQLPass   = os.Getenv("SQL_PASSWORD")
+		dbNameCSQL     = os.Getenv("CLOUDSQL_DBNAME")
+		socket         = os.Getenv("CLOUDSQL_SOKET_PREFIX")
+	)
+
+	dbURI := fmt.Sprintf("%s:%s@unix(%s/%s)/%s", userName, cloudSQLPass, socket, connectionName, dbNameCSQL)
+	db, err := sql.Open("mysql", dbURI)
 	if err != nil {
 		return TaskeeperDB{}, err
 	}

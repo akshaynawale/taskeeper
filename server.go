@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	tdb "taskdb"
+
+	tdb "github.com/akshaynawale/taskeeper/taskdb"
 
 	"github.com/golang/glog"
 	"github.com/gomodule/redigo/redis"

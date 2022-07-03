@@ -2,10 +2,11 @@ package main
 
 import (
 	"net/http"
+
 	"strconv"
-	"taskdb"
 	"text/template"
 
+	"github.com/akshaynawale/taskeeper/taskdb"
 	"github.com/golang/glog"
 	"github.com/gomodule/redigo/redis"
 )
