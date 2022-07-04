@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	tdb "github.com/akshaynawale/taskeeper/taskdb"
 
@@ -17,8 +18,11 @@ type Server struct {
 func (s *Server) Init() error {
 	var err error
 	var conn redis.Conn
+	redisHost := os.Getenv("REDISHOST")
+	redisPort := os.Getenv("REDISPORT")
+	redisAddr := fmt.Sprintf("%s:%s", redisHost, redisPort)
 	// Initialize the redis connection to a redis instance running on your local machine
-	if conn, err = redis.DialURL("redis://localhost"); err != nil {
+	if conn, err = redis.DialURL(redisAddr); err != nil {
 		return fmt.Errorf("failed to connect redis server: %v", err)
 	}
 	// Assign the connection to the package level `cache` variable
