@@ -4,6 +4,6 @@ env_variables:
   CLOUDSQL_CONNECTION_NAME: "taskeeper-355213:us-central1:taskeeperdb"
   SQL_USERNAME: "taskeeperbot"
   SQL_PASSWORD: "PutYourPasswordHere"
-  CLOUDSQL_CONNECTION_NAME: "taskeeperdatabase"
+  CLOUDSQL_DBNAME: "taskeeperdatabase"
   REDISHOST: "10.42.152.83"
   REDISPORT: "6379"
