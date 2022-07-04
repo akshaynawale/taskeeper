@@ -1,4 +1,4 @@
-runtime: go118 # golang version
+runtime: go116 # golang version
 
 env_variables:
   CLOUDSQL_CONNECTION_NAME: "taskeeper-355213:us-central1:taskeeperdb"
