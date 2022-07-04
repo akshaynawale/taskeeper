@@ -27,6 +27,7 @@ func (s *Server) Init() error {
 	}
 	// Assign the connection to the package level `cache` variable
 	s.Cache = conn
+	glog.Info("sucessfully connected to the redis")
 
 	// connect to the mySql database
 	var tDB tdb.TaskeeperDB

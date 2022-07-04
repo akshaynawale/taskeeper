@@ -1,4 +1,4 @@
-runtime: go116 # golang version
+runtime: go115 # golang version
 
 env_variables:
   CLOUDSQL_CONNECTION_NAME: "taskeeper-355213:us-central1:taskeeperdb"
@@ -7,3 +7,6 @@ env_variables:
   CLOUDSQL_DBNAME: "taskeeperdatabase"
   REDISHOST: "10.42.152.83"
   REDISPORT: "6379"
+
+vpc_access_connector:
+  name: "projects/taskeeper-355213/locations/us-central1/connectors/taskeeperconn"

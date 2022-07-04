@@ -30,10 +30,11 @@ func ConnectDb() (TaskeeperDB, error) {
 		userName       = mustGetenv("SQL_USERNAME")
 		cloudSQLPass   = os.Getenv("SQL_PASSWORD")
 		dbNameCSQL     = os.Getenv("CLOUDSQL_DBNAME")
-		socket         = os.Getenv("CLOUDSQL_SOKET_PREFIX")
+		//socket         = os.Getenv("CLOUDSQL_SOKET_PREFIX")
 	)
 
-	dbURI := fmt.Sprintf("%s:%s@unix(%s/%s)/%s", userName, cloudSQLPass, socket, connectionName, dbNameCSQL)
+	//dbURI := fmt.Sprintf("%s:%s@unix(%s/%s)/%s", userName, cloudSQLPass, socket, connectionName, dbNameCSQL)
+	dbURI := fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", userName, cloudSQLPass, connectionName, dbNameCSQL)
 	db, err := sql.Open("mysql", dbURI)
 	if err != nil {
 		return TaskeeperDB{}, err

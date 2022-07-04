@@ -19,7 +19,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", ShowLoginPage)
-	// login handler
+	// login handlers
 	mux.Handle("/login", LoginHandler{db: s.TaskDB, cache: s.Cache})
 	mux.Handle("/signUp", CreateUserHandler{db: s.TaskDB})
 	mux.Handle("/home", CheckAuth(HomeHandler{db: s.TaskDB, cache: s.Cache}))
